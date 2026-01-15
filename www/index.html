@@ -33,20 +33,20 @@ function getAuthErrorMessage(error) {
     return error.message || 'エラーが発生しました';
 }
 
-// 【改良】文字数カウント（残り文字数表示に変更）
 function updateCharacterCount(inputId, counterId, maxLength) {
     const input = $(`#${inputId}`);
     const counter = $(`#${counterId}`);
 
     input.on('input', () => {
         const length = input.val().length;
-        const remaining = maxLength - length;
+        const remaining = maxLength - length; // 最大文字数から現在の長さを引く
+        
         counter.text(`残り: ${remaining}文字`);
 
         if (remaining < 0) {
-            counter.addClass('error').css('color', 'red');
+            counter.css('color', 'red').addClass('error');
         } else {
-            counter.removeClass('error').css('color', '');
+            counter.css('color', '').removeClass('error');
         }
     });
 }
